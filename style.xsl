@@ -71,15 +71,17 @@
     <main>
         <div class="container shadow">
             <div class="row justify-content-center ">
+            <xsl:for-each select="tmdb/persons/person">
                 <div class="col-4 my-3">
                     <div class="card">
-                        <img class="card-img-top" src="img/foto.jpg" alt="Title" />
+                        <img class="card-img-top" src="{foto}" alt="Title" />
                         <div class="card-body">
-                            <h4 class="card-title">Title</h4>
+                            <xsl:value-of select="a"/>
                             <p class="card-text">萌妻食神, 外星女生柴小七, Devil Lover เผลอใจ..ให้นายปีศาจ</p>
                         </div>
                     </div>
                 </div>
+            </xsl:for-each>
             </div>
             <div class="row justify-content-center ">
                 <div class="col-6 my-3">
