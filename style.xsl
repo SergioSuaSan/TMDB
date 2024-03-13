@@ -74,33 +74,60 @@
             <xsl:for-each select="tmdb/persons/person">
                 <div class="col-4 my-3">
                     <div class="card">
-                        <img class="card-img-top" src="{foto}" alt="Title" />
+                        <xsl:choose>
+                            <xsl:when test="foto != ''">
+                                <img class="card-img-top" src="{foto}" alt="Title" />
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <img class="card-img-top" src="img/noimageperson.png" alt="Title" />
+                            </xsl:otherwise>
+                        </xsl:choose>
+                      
                         <div class="card-body">
-                            <xsl:value-of select="a"/>
-                            <p class="card-text">萌妻食神, 外星女生柴小七, Devil Lover เผลอใจ..ให้นายปีศาจ</p>
+                             <h4 class="card-title"> <xsl:value-of select="@nombre"/></h4>
+                            <p class="card-text"><xsl:value-of select="peliculas"/></p>
                         </div>
                     </div>
                 </div>
             </xsl:for-each>
             </div>
             <div class="row justify-content-center ">
-                <div class="col-6 my-3">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-4">
-                                <img class="rounded-1 img-fluid h-100" src="img/poster.jpg" alt="Title" />
-                            </div>
-                            <div class="col">
-                                <div class="card-body m-4">
-                                    <h4 class="card-title mb-4">Title</h4>
-                                    <p class="card-text">萌, Devil Lover เ</p>
-                                    <p class=" d-inline">Rating: </p>
-                                    <p class="d-inline card-text bg-danger text-center rounded-circle p-1">33</p>
+                <xsl:for-each select="tmdb/movies/movie">
+                    <div class="col-6 my-3">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-4">
+                                    <xsl:choose>
+                                        <xsl:when test="foto != ''">
+                                    <img class="rounded-1 img-fluid h-100" src="{foto}" alt="Title" />
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                    <img class="card-img-top" src="img/noimagemovie.png" alt="Title" />        
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </div>
+                                <div class="col">
+                                    <div class="card-body m-4">
+                                        <h4 class="card-title mb-4"><xsl:value-of select="@titulo"/></h4>
+                                        <p class="card-text"><xsl:value-of select="fecha"/></p>
+                                        <p class=" d-inline">Rating: </p>
+                                        <xsl:choose>
+                                            <xsl:when test="rating<60">
+                                                <p class="d-inline card-text bg-danger text-center rounded-circle p-1"><xsl:value-of select="rating"/></p>
+                                            </xsl:when>
+                                            <xsl:when test="rating<80">
+                                                <p class="d-inline card-text bg-warning text-center rounded-circle p-1"><xsl:value-of select="rating"/></p>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <p class="d-inline card-text bg-success text-center rounded-circle p-1"><xsl:value-of select="rating"/></p>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </xsl:for-each>
             </div>
         </div>      
     </main>
