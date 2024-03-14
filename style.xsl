@@ -44,19 +44,19 @@
                     <ul class="navbar-nav mx-auto mt-2 ">
 
                         <li class="nav-item">
-                            <button class="btn btn-success m-2 p-3 fs-5" type="submit">
+                            <button class="btn btn-success m-2 p-3 fs-5"  onclick="document.getElementById('Person').style.display = 'flex'; document.getElementById('Movie').style.display = 'none'" type="submit">
                                 Person
                             </button>
 
                         </li>
                         <li class="nav-item">
-                            <button class="btn btn-success m-2 p-3 fs-5" type="submit">
+                            <button class="btn btn-success m-2 p-3 fs-5"  onclick="document.getElementById('Person').style.display = 'none'; document.getElementById('Movie').style.display = 'flex'" type="submit">
                                 Movies
                             </button>
                         </li>
                         <li class="nav-item">
 
-                            <button class="btn btn-success m-2 p-3 fs-5" type="submit">
+                            <button class="btn btn-success m-2 p-3 fs-5"  onclick="document.getElementById('Person').style.display = 'flex'; document.getElementById('Movie').style.display = 'flex'" type="submit">
                                 All
                             </button>
                         </li>
@@ -70,7 +70,7 @@
 
     <main>
         <div class="container shadow">
-            <div class="row justify-content-center ">
+            <div class="row justify-content-center " id='Person'>
             <xsl:for-each select="tmdb/persons/person">
                 <div class="col-4 my-3">
                     <div class="card">
@@ -91,7 +91,7 @@
                 </div>
             </xsl:for-each>
             </div>
-            <div class="row justify-content-center ">
+            <div class="row justify-content-center " id = 'Movie'>
                 <xsl:for-each select="tmdb/movies/movie">
                     <div class="col-6 my-3">
                         <div class="card">
@@ -112,10 +112,10 @@
                                         <p class="card-text"><xsl:value-of select="fecha"/></p>
                                         <p class=" d-inline">Rating: </p>
                                         <xsl:choose>
-                                            <xsl:when test="rating<60">
+                                            <xsl:when test="rating &lt; 61">
                                                 <p class="d-inline card-text bg-danger text-center rounded-circle p-1"><xsl:value-of select="rating"/></p>
                                             </xsl:when>
-                                            <xsl:when test="rating<80">
+                                            <xsl:when test="rating &lt; 71">
                                                 <p class="d-inline card-text bg-warning text-center rounded-circle p-1"><xsl:value-of select="rating"/></p>
                                             </xsl:when>
                                             <xsl:otherwise>
